@@ -5,12 +5,25 @@
     <form>
       <div class="mb-3">
         <label class="form-label">邮箱地址</label>
-        <validate-input type="text" placeholder="请输入邮箱地址" :rules="emailRules" v-model="emailVal"></validate-input>
-        {{emailVal}}
+        <validate-input
+          v-model="emailVal"
+          type="text"
+          placeholder="请输入邮箱地址"
+          :rules="emailRules"
+        />
+        {{ emailVal }}
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">密码</label>
-        <validate-input type="password" placeholder="请输入密码" :rules="pwdRules" v-model="pwdVal"></validate-input>
+        <label
+          for="exampleInputPassword1"
+          class="form-label"
+        >密码</label>
+        <validate-input
+          v-model="pwdVal"
+          type="password"
+          placeholder="请输入密码"
+          :rules="pwdRules"
+        />
       </div>
     </form>
   </div>
@@ -49,36 +62,36 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 //   }
 // ]
 const testUser: UserProps = {
-  isLogin: true
+	isLogin: true
 }
 export default defineComponent({
-  name: 'App',
-  components: {
-    // ColumnList,
-    GlobalHeader,
-    ValidateInput
-  },
-  setup () {
-    const emailVal = ref('')
-    const pwdVal = ref('')
+	name: 'App',
+	components: {
+		// ColumnList,
+		GlobalHeader,
+		ValidateInput
+	},
+	setup () {
+		const emailVal = ref('')
+		const pwdVal = ref('')
 
-    const emailRules: RulesProp = [
-      { type: 'required', message: '邮箱地址不能为空' },
-      { type: 'email', message: '请输入有效的邮箱地址' }
-    ]
-    const pwdRules: RulesProp = [
-      { type: 'required', message: '密码不能为空' },
-      { type: 'range', min: { message: '你的密码至少包含6位，不含空格', length: 6 }, max: { message: '你的密码最多包含18位，不含空格', length: 18 } }
-    ]
-    return {
-      // testData,
-      testUser,
-      emailRules,
-      emailVal,
-      pwdRules,
-      pwdVal
-    }
-  }
+		const emailRules: RulesProp = [
+			{ type: 'required', message: '邮箱地址不能为空' },
+			{ type: 'email', message: '请输入有效的邮箱地址' }
+		]
+		const pwdRules: RulesProp = [
+			{ type: 'required', message: '密码不能为空' },
+			{ type: 'range', min: { message: '你的密码至少包含6位，不含空格', length: 6 }, max: { message: '你的密码最多包含18位，不含空格', length: 18 } }
+		]
+		return {
+			// testData,
+			testUser,
+			emailRules,
+			emailVal,
+			pwdRules,
+			pwdVal
+		}
+	}
 })
 </script>
 

@@ -1,6 +1,9 @@
 <template>
-  <li class="dropdown-option" :class="{'is-disabled': disabled}">
-    <slot></slot>
+  <li
+    class="dropdown-option"
+    :class="{'is-disabled': disabled}"
+  >
+    <slot />
   </li>
 </template>
 
@@ -8,14 +11,14 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'DropdownItem',
-  props: {
-    disabled: {
-      type: Boolean,
-      default: false
+	name: 'DropdownItem',
+	props: {
+		disabled: {
+			type: Boolean,
+			default: false
 
-    }
-  }
+		}
+	}
 
 })
 </script>
