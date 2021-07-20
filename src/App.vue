@@ -2,7 +2,7 @@
   <div class="container">
     <global-header :user="testUser" />
     <!-- <column-list :list="testData"/> -->
-    <form>
+    <validate-form @form-submit="submitForm">
       <div class="mb-3">
         <label class="form-label">邮箱地址</label>
         <validate-input
@@ -25,7 +25,7 @@
           :rules="pwdRules"
         />
       </div>
-    </form>
+    </validate-form>
   </div>
 </template>
 
@@ -33,7 +33,9 @@
 import { defineComponent, ref } from 'vue'
 // import ColumnList, { ColumnProps } from './components/ColumnList.vue'
 import GlobalHeader, { UserProps } from './components/GlobalHeader.vue'
+import ValidateForm from './components/ValidateForm.vue'
 import ValidateInput, { RulesProp } from './components/ValidateInput.vue'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 // const testData: ColumnProps[] = [
 //   {
@@ -61,6 +63,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 //     avatar: ''
 //   }
 // ]
+
 const testUser: UserProps = {
 	isLogin: true
 }
@@ -69,7 +72,8 @@ export default defineComponent({
 	components: {
 		// ColumnList,
 		GlobalHeader,
-		ValidateInput
+		ValidateInput,
+		ValidateForm
 	},
 	setup () {
 		const emailVal = ref('')
@@ -83,13 +87,17 @@ export default defineComponent({
 			{ type: 'required', message: '密码不能为空' },
 			{ type: 'range', min: { message: '你的密码至少包含6位，不含空格', length: 6 }, max: { message: '你的密码最多包含18位，不含空格', length: 18 } }
 		]
+		const submitForm = (result: boolean) => {
+			console.log(result, 'result')
+		}
 		return {
 			// testData,
 			testUser,
 			emailRules,
 			emailVal,
 			pwdRules,
-			pwdVal
+			pwdVal,
+			submitForm
 		}
 	}
 })
