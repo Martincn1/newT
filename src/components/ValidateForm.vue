@@ -38,11 +38,15 @@ export default defineComponent({
 			funcClearArr.map(func => func())
 			context.emit('form-submit', result)
 		}
-		const callback = (func: validateFunc) => {
-			funcArr.push(func)
+		const callback = (func?: validateFunc) => {
+			if(func) {
+				funcArr.push(func)
+			}
 		}
-		const clearCallback = (func: ClearFunc) => {
-			funcClearArr.push(func)
+		const clearCallback = (func?: ClearFunc) => {
+			if(func) {
+				funcClearArr.push(func)
+			}
 		}
 		emitter.on('form-item-created', callback)
 		emitter.on('form-item-clear', clearCallback)

@@ -1,24 +1,30 @@
 <template>
   <nav class="navbar navbar-dark bg-primary justify-content-between mb-4 px-4">
-    <a
-      href="#"
+    <router-link
       class="navbar-brand"
-    >者也专栏</a>
+      to="/"
+    >
+      者也专栏
+    </router-link>
     <ul
       v-if="!user.isLogin"
       class="list-inline mb-0"
     >
       <li class="list-inline-item">
-        <a
-          href="#"
+        <router-link
+          to="/login"
           class="btn btn-outline-light my-2"
-        >登录</a>
+        >
+          登陆
+        </router-link>
       </li>
       <li class="list-inline-item">
-        <a
-          href="#"
+        <router-link
+          to="/login"
           class="btn btn-outline-light my-2"
-        >注册</a>
+        >
+          注册
+        </router-link>
       </li>
     </ul>
     <ul

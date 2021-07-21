@@ -2,7 +2,7 @@
   <div class="container">
     <global-header :user="testUser" />
     <!-- <column-list :list="testData"/> -->
-    <validate-form @form-submit="submitForm">
+    <!-- <validate-form @form-submit="submitForm">
       <div class="mb-3">
         <label class="form-label">邮箱地址</label>
         <validate-input
@@ -25,7 +25,19 @@
           :rules="pwdRules"
         />
       </div>
-    </validate-form>
+    </validate-form> -->
+    <router-view />
+    <footer class="text-center py-4 text-secondary bg-light mt-6">
+      <small>
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item">© 2020 者也专栏</li>
+          <li class="list-inline-item">课程</li>
+          <li class="list-inline-item">文档</li>
+          <li class="list-inline-item">联系</li>
+          <li class="list-inline-item">更多</li>
+        </ul>
+      </small>
+    </footer>
   </div>
 </template>
 
@@ -33,47 +45,22 @@
 import { defineComponent, ref } from 'vue'
 // import ColumnList, { ColumnProps } from './components/ColumnList.vue'
 import GlobalHeader, { UserProps } from './components/GlobalHeader.vue'
-import ValidateForm from './components/ValidateForm.vue'
+// import ValidateForm from './components/ValidateForm.vue'
 import ValidateInput, { RulesProp } from './components/ValidateInput.vue'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-// const testData: ColumnProps[] = [
-//   {
-//     id: 1,
-//     title: '专栏1',
-//     desc: '这是描述1',
-//     avatar: ''
-//   },
-//   {
-//     id: 2,
-//     title: '专栏2',
-//     desc: '这是描述2',
-//     avatar: ''
-//   },
-//   {
-//     id: 3,
-//     title: '专栏3',
-//     desc: '这是描述3',
-//     avatar: ''
-//   },
-//   {
-//     id: 4,
-//     title: '专栏4',
-//     desc: '这是描述4',
-//     avatar: ''
-//   }
-// ]
+
 
 const testUser: UserProps = {
-	isLogin: true
+	isLogin: false
 }
 export default defineComponent({
 	name: 'App',
 	components: {
 		// ColumnList,
 		GlobalHeader,
-		ValidateInput,
-		ValidateForm
+		// ValidateInput,
+		// ValidateForm
 	},
 	setup () {
 		const emailVal = ref('')
