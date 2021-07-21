@@ -4,17 +4,18 @@
       <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
           <img
-            src="../assets/logo.png"
+            src="../assets/undraw_Notebook_re_id0r.svg"
             alt="callout"
             class="w-50"
           >
-          <h2 class="font-weight-light">
+          <h2 class="font-weight-light mt-5">
             随心写作，自由表达
           </h2>
           <p>
             <a
               href="#"
               class="btn btn-primary my-2"
+              @click="createArticle"
             >开始写文章</a>
           </p>
         </div>
@@ -28,8 +29,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { testData } from '../testData'
+import { defineComponent, computed, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { GlobalDataProps } from '../store'
 import ColumnList from '../components/ColumnList.vue'
 export default defineComponent({
 	name: 'Home',
@@ -37,8 +40,18 @@ export default defineComponent({
 		ColumnList
 	},
 	setup() {
+		const router = useRouter()
+		const store = useStore<GlobalDataProps>()
+		onMounted(() => {
+			store.dispatch('fetchColumns')
+		})
+		const createArticle = () => {
+			router.push('/create')
+		}
+		const list = computed(() => store.state.columns)
 		return {
-			list: testData
+			list,
+			createArticle
 		}
 	}
 })

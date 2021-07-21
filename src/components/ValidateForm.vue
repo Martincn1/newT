@@ -35,7 +35,7 @@ export default defineComponent({
 		const submitForm = () => {
 			// 这里map返回boolean数组，再通过every返回所有结果
 			const result = funcArr.map(func => func()).every(result => result)
-			funcClearArr.map(func => func())
+			// funcClearArr.map(func => func())
 			context.emit('form-submit', result)
 		}
 		const callback = (func?: validateFunc) => {

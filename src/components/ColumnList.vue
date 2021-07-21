@@ -18,10 +18,12 @@
           <p class="card-text card-left">
             {{ item.desc }}
           </p>
-          <a
-            href="#"
+          <router-link
+            :to="{name: 'column', params: {id: item.id}}"
             class="btn btn-primary"
-          >进入专栏</a>
+          >
+            进入专栏
+          </router-link>
         </div>
       </div>
     </div>

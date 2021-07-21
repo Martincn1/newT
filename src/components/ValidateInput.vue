@@ -1,6 +1,7 @@
 <template>
   <div class="validate-input-container pb3">
     <input
+      v-if="tag !== 'textarea'"
       v-bind="$attrs"
       class="form-control"
       :class="{ 'is-invalid': inputRef.error }"
@@ -8,6 +9,15 @@
       @blur="validateInputed"
       @input="updateValue"
     >
+    <textarea
+      v-else
+      class="form-control"
+      :class="{'is-invalid': inputRef.error}"
+      :value="inputRef.val"
+      v-bind="$attrs"
+      @blur="validateInput"
+      @input="updateValue"
+    />
     <span
       v-if="inputRef.error"
       class="invalid-feedback"
@@ -18,7 +28,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, PropType, reactive } from 'vue'
 import { emitter } from './ValidateForm.vue'
-const emailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 const pwdReg = /^[0-9]{6,18}$/
 interface strLimit {
   message: string;
@@ -30,6 +40,7 @@ interface RuleProp {
   min?: strLimit;
   max?: strLimit;
 }
+export type TagType = 'input' | 'textarea'
 export type RulesProp = RuleProp[];
 export default defineComponent({
 	inheritAttrs: false, // 不希望组件的根元素继承attribute,有了inheritAttrs：false和$attrs,就可以手动决定这些attribute会被赋予哪些元素
@@ -42,6 +53,10 @@ export default defineComponent({
 			type: String,
 			default: ''
 		},
+		tag: {
+			type: String as PropType<TagType>,
+			default: 'input'
+		}
 	},
 	emits: ['update:modelValue'],
 
